@@ -1,0 +1,18 @@
+/*
+ * Tailwind Recommended VS Code Settings
+ * https://github.com/tailwindlabs/tailwindcss-intellisense
+ *
+ * These pulled into user settings if/when branch
+ * becomes merged into master and this becomes a
+ * default method of prototyping.
+ */
+{
+  "css.validate": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html"
+  },
+  "tailwindCSS.emmetCompletions": true
+}

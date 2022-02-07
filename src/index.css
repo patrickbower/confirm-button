@@ -1,0 +1,111 @@
+/* tailwind css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --colour-tarmac: #0c161c;
+  --colour-ebony: #242d33;
+  --colour-mako: #3d4549;
+  --colour-asphalt: #6d7377;
+  --colour-concrete: #9ea2a4;
+  --colour-iron: #ced0d2;
+  --colour-chalk: #f9fafa;
+  --colour-neon: #f7ff1a;
+  --colour-field: #14854d;
+  --colour-gloves: #d12424;
+  --colour-danger: #fd7777;
+  --screen-sm: 375px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1440px;
+  --screen-2xl: 1920px;
+  --grid-template-columns-15: repeat(15, minmax(0, 1fr));
+  --font-family-display: [ "DAZN Oscine" ];
+  --font-family-body: [ "DAZN Trim" ];
+  --font-family-icon: [ "DAZN iconfont" ];
+  --font-size-12: 0.75rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-22: 1.375rem;
+  --font-size-24: 1.5rem;
+  --font-size-28: 1.75rem;
+  --font-size-32: 2rem;
+  --font-size-36: 2.25rem;
+  --font-size-42: 2.625rem;
+  --stroke-width-3: 3;
+  --stroke-width-4: 4;
+  --stroke-width-5: 5;
+  --stroke-width-6: 6;
+  --stroke-width-7: 7;
+  --stroke-width-8: 8;
+}
+
+@layer base {
+  @font-face {
+    font-family: "DAZNTrim";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_400.woff2")
+        format("woff2"),
+      url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_400.woff")
+        format("woff");
+  }
+
+  @font-face {
+    font-family: "DAZNTrim";
+    font-style: normal;
+    font-weight: 600;
+    src: url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_600.woff2")
+        format("woff2"),
+      url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_600.woff")
+        format("woff");
+  }
+
+  @font-face {
+    font-family: "DAZNTrim";
+    font-style: normal;
+    font-weight: 800;
+    src: url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_800.woff2")
+        format("woff2"),
+      url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_800.woff")
+        format("woff");
+  }
+
+  @font-face {
+    font-family: "DAZNTrim";
+    font-style: italic;
+    font-weight: 600;
+    src: url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_italic_600.woff2")
+        format("woff2"),
+      url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_italic_600.woff")
+        format("woff");
+  }
+  @font-face {
+    font-family: "Oscine";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://static.dazndn.com/fonts/Oscine_v2.001_normal_400.woff2")
+        format("woff2"),
+      url("https://static.dazndn.com/fonts/Oscine_v2.001_normal_400.woff")
+        format("woff");
+  }
+  @font-face {
+    font-family: "Oscine";
+    font-style: normal;
+    font-weight: 700;
+    src: url("https://static.dazndn.com/fonts/Oscine_v2.001_normal_700.woff2")
+        format("woff2"),
+      url("https://static.dazndn.com/fonts/Oscine_v2.001_normal_700.woff")
+        format("woff");
+  }
+
+  body {
+    font-family: "DAZNTrim";
+    font-weight: 300;
+    background-color: var(--colour-tarmac);
+    color: var(--colour-chalk);
+    font-size: 16px;
+    margin: 0;
+  }
+}

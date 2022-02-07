@@ -1,0 +1,23 @@
+.device,
+.device * {
+  cursor: -webkit-image-set(
+        url("./touch-cursor.png") 1x,
+        url("./touch-cursor.png") 2x
+      )
+      32 32,
+    auto !important;
+}
+
+.device:active,
+.device:active * {
+  cursor: -webkit-image-set(
+        url("./touch-cursor-active.png") 1x,
+        url("./touch-cursor-active.png") 2x
+      )
+      32 32,
+    auto !important;
+}
+
+.device::-webkit-scrollbar {
+  display: none;
+}

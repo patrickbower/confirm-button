@@ -1,0 +1,72 @@
+.railCont {
+  width: 100%;
+  --rail-gutter: 1rem;
+}
+
+.rail {
+  display: grid;
+  grid-gap: var(--rail-gutter);
+  grid-template-columns: 8px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(90% - var(--rail-gutter) * 2);
+  overflow-x: scroll;
+  overflow-y: visible;
+  scroll-snap-type: x proximity;
+  grid-column: 1 / -1;
+  padding: 8px 0;
+}
+
+.rail:before,
+.rail:after {
+  content: "";
+  width: calc(var(--rail-gutter) / 2);
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+@screen sm {
+  .rail {
+    grid-auto-columns: calc(48% - var(--rail-gutter) * 2);
+  }
+  .railExtend {
+    grid-auto-columns: calc(94% - var(--rail-gutter) * 2);
+  }
+}
+
+@screen md {
+  .rail {
+    grid-auto-columns: calc(33.33% - var(--rail-gutter) * 2);
+  }
+  .railExtend {
+    grid-auto-columns: calc(49.2% - var(--rail-gutter) * 2);
+  }
+}
+
+@screen lg {
+  .rail:first-child {
+    @apply pl-10;
+  }
+  .rail {
+    grid-auto-columns: calc(25% - var(--rail-gutter) * 2);
+  }
+}
+
+@screen xl {
+  .rail {
+    grid-auto-columns: calc(20% - var(--rail-gutter) * 2);
+  }
+  .railExtend {
+    grid-auto-columns: calc(32.9% - var(--rail-gutter) * 2);
+  }
+}
+
+@screen 2xl {
+  .rail {
+    grid-auto-columns: calc(16.81% - var(--rail-gutter) * 2);
+  }
+  .railExtend {
+    grid-auto-columns: calc(24.8% - var(--rail-gutter) * 2);
+  }
+}
