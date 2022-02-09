@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "DAZN Trim";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_700.woff2")
+      format("woff2"),
+    url("https://static.dazndn.com/fonts/DAZNTrim_v2.9_normal_700.woff")
+      format("woff");
+}
+
+.button {
+  border: none;
+  padding: 20px 24px 20px 24px;
+  background: #f7ff1a;
+  font-family: DAZN Trim;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 12px;
+  color: #0c161c;
+  text-transform: uppercase;
+}
