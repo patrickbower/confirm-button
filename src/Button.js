@@ -5,53 +5,68 @@ import CheckIcon from "./CheckIcon";
 import { motion } from "framer-motion";
 
 const Button = () => {
-  const [addedToPackage, setAddedToPackage] = useState(false);
+  const Add = <motion.span>Add to package</motion.span>;
+  const Pending = (
+    <motion.span>
+      <span className={styles.spacer}>Add to package</span>
+      <SpinnerIcon
+        className={styles.icon}
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: 0.5,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+    </motion.span>
+  );
+  const Success = (
+    <motion.span>
+      <span className={styles.spacer}>Add to package</span>
+      <CheckIcon
+        className={styles.icon}
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }}
+      />
+    </motion.span>
+  );
+  const Remove = <motion.span>Remove from package</motion.span>;
 
-  // const handleButtonContent = () => {
-  //   return addedToPackage ? "Remove" : "Add to package";
-  // };
+  const sequences = {
+    add: [Add, Pending, Success],
+    remove: [Remove, Pending],
+  };
 
-  // const handleButtonIcons = () => {
-  //   return addedToPackage ? <Check /> : <Spinner />;
-  // };
+  const [sequenceName, setSequenceName] = useState("add");
+  const [sequenceType, setSequenceType] = useState(sequences[sequenceName]);
+  const [sequenceNum, setSequenceNum] = useState(0);
+
+  const getContent = () => {
+    return sequenceType[sequenceNum];
+  };
 
   const handleClick = () => {
-    setAddedToPackage(!addedToPackage);
+    const nextSequenceName = sequenceName === "add" ? "remove" : "add";
+    if (sequenceNum === sequenceType.length - 1) {
+      setSequenceName(nextSequenceName);
+      setSequenceType(sequences[nextSequenceName]);
+      setSequenceNum(0);
+    } else {
+      setSequenceNum(sequenceNum + 1);
+    }
+    console.log({ sequenceName, sequenceType, sequenceNum, nextSequenceName });
   };
 
   return (
     <div>
-      <button className={styles.button} onClick={handleClick}>
-        Add to package
-      </button>
-      <button className={styles.button} onClick={handleClick}>
-        <span className={styles.spacer}>Add to package</span>
-        <SpinnerIcon
-          className={styles.icon}
-          initial={{ rotate: 0 }}
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 0.5,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      </button>
-      <button className={styles.button} onClick={handleClick}>
-        <span className={styles.spacer}>Add to package</span>
-        <CheckIcon
-          className={styles.icon}
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{
-            duration: 0.5,
-            ease: "easeInOut",
-          }}
-        />
-      </button>
-      <button className={styles.button} onClick={handleClick}>
-        Remove
-      </button>
+      <motion.button className={styles.button} onClick={handleClick}>
+        {getContent()}
+      </motion.button>
     </div>
   );
 };

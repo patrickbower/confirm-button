@@ -15,7 +15,7 @@ const CheckIcon = (props) => {
       <motion.path
         d="M1 9.72727L6.81818 17L19.9091 1"
         stroke="#0C161C"
-        stroke-width="2.5"
+        strokeWidth="2.5"
         {...pathProps}
       />
     </svg>
