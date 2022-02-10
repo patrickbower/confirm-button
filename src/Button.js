@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const Button = () => {
   const Add = <motion.span>Add to package</motion.span>;
   const Pending = (
-    <motion.span>
+    <motion.span className={styles.contents}>
       <span className={styles.spacer}>Add to package</span>
       <SpinnerIcon
         className={styles.icon}
@@ -22,7 +22,7 @@ const Button = () => {
     </motion.span>
   );
   const Success = (
-    <motion.span>
+    <motion.span className={styles.contents}>
       <span className={styles.spacer}>Add to package</span>
       <CheckIcon
         className={styles.icon}
@@ -59,7 +59,7 @@ const Button = () => {
     } else {
       setSequenceNum(sequenceNum + 1);
     }
-    console.log({ sequenceName, sequenceType, sequenceNum, nextSequenceName });
+    // console.log({ sequenceName, sequenceType, sequenceNum, nextSequenceName });
   };
 
   return (
