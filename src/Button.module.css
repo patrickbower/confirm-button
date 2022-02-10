@@ -19,4 +19,19 @@
   line-height: 12px;
   color: #0c161c;
   text-transform: uppercase;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  /* // styling */
+  margin: 10px;
+}
+
+.spacer {
+  visibility: hidden;
+}
+
+.icon {
+  position: absolute;
 }

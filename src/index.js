@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Button from "./Button";
 import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Button />
+    <div className="page">
+      <Button />
+    </div>
   </React.StrictMode>,
   document.getElementById("root")
 );
