@@ -31,14 +31,13 @@ const Button = () => {
       <span className={styles.spacer}>Add to package</span>
       <CheckIcon
         className={styles.icon}
-        initial={false}
+        initial={{ pathLength: 0 }}
         animate={{
-          pathLength: [0, 1, 1],
+          pathLength: [0, 1, 1, 1],
         }}
         onAnimationComplete={() => buttonRef.current.click()}
         transition={{
           duration: 1,
-          // times: [0, 0.2, 1],
           ease: "easeOut",
         }}
       />
