@@ -5,6 +5,8 @@ import CheckIcon from "./CheckIcon";
 import { motion } from "framer-motion";
 
 const Button = () => {
+  const buttonRef = useRef(null);
+
   const Add = <motion.span>Add to package</motion.span>;
   const Pending = (
     <motion.span className={styles.contents}>
@@ -15,7 +17,7 @@ const Button = () => {
         animate={{
           rotate: 360,
         }}
-        onAnimationComplete={() => handleNextItemInSequence()}
+        onAnimationComplete={() => buttonRef.current.click()}
         transition={{
           duration: 0.5,
           repeat: 3,
@@ -29,14 +31,15 @@ const Button = () => {
       <span className={styles.spacer}>Add to package</span>
       <CheckIcon
         className={styles.icon}
-        initial={{ pathLength: 0 }}
+        initial={false}
         animate={{
-          pathLength: 1,
+          pathLength: [0, 1, 1],
         }}
-        onAnimationComplete={() => handleNextItemInSequence()}
+        onAnimationComplete={() => buttonRef.current.click()}
         transition={{
-          duration: 0.5,
-          ease: "easeInOut",
+          duration: 1,
+          // times: [0, 0.2, 1],
+          ease: "easeOut",
         }}
       />
     </motion.span>
@@ -52,31 +55,33 @@ const Button = () => {
   let [sequenceName, setSequenceName] = useState("add");
   let [sequenceType, setSequenceType] = useState(sequences[sequenceName]);
 
-  const sequenceNumRef = useRef();
-  sequenceNumRef.current = sequenceNum;
+  // const sequenceNumRef = useRef();
+  // sequenceNum = sequenceNum;
 
   const handleNextItemInSequence = () => {
     const nextSequenceName = sequenceName === "add" ? "remove" : "add";
-    if (sequenceNumRef.current === sequenceType.length - 1) {
+    if (sequenceNum === sequenceType.length - 1) {
+      console.log("end of sequence");
       setSequenceName(nextSequenceName);
       setSequenceType(sequences[nextSequenceName]);
       setSequenceNum(0);
     } else {
-      setSequenceNum(sequenceNumRef.current + 1);
+      console.log("next item in sequence");
+      setSequenceNum(sequenceNum + 1);
     }
 
     console.log({ sequenceName, sequenceType, nextSequenceName, sequenceNum });
-    console.log(sequenceNumRef.current);
   };
 
   const getContent = () => {
-    return sequenceType[sequenceNumRef.current];
+    return sequenceType[sequenceNum];
   };
 
   return (
     <div>
       <motion.button
         className={styles.button}
+        ref={buttonRef}
         onClick={handleNextItemInSequence}
       >
         {getContent()}
