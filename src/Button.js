@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Button.module.css";
 import SpinnerIcon from "./SpinnerIcon";
 import CheckIcon from "./CheckIcon";
@@ -12,10 +12,13 @@ const Button = () => {
       <SpinnerIcon
         className={styles.icon}
         initial={{ rotate: 0 }}
-        animate={{ rotate: 360 }}
+        animate={{
+          rotate: 360,
+        }}
+        onAnimationComplete={() => handleNextItemInSequence()}
         transition={{
           duration: 0.5,
-          repeat: Infinity,
+          repeat: 3,
           ease: "linear",
         }}
       />
@@ -27,7 +30,10 @@ const Button = () => {
       <CheckIcon
         className={styles.icon}
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        animate={{
+          pathLength: 1,
+        }}
+        onAnimationComplete={() => handleNextItemInSequence()}
         transition={{
           duration: 0.5,
           ease: "easeInOut",
@@ -42,29 +48,37 @@ const Button = () => {
     remove: [Remove, Pending],
   };
 
-  const [sequenceName, setSequenceName] = useState("add");
-  const [sequenceType, setSequenceType] = useState(sequences[sequenceName]);
-  const [sequenceNum, setSequenceNum] = useState(0);
+  let [sequenceNum, setSequenceNum] = useState(0);
+  let [sequenceName, setSequenceName] = useState("add");
+  let [sequenceType, setSequenceType] = useState(sequences[sequenceName]);
 
-  const getContent = () => {
-    return sequenceType[sequenceNum];
-  };
+  const sequenceNumRef = useRef();
+  sequenceNumRef.current = sequenceNum;
 
-  const handleClick = () => {
+  const handleNextItemInSequence = () => {
     const nextSequenceName = sequenceName === "add" ? "remove" : "add";
-    if (sequenceNum === sequenceType.length - 1) {
+    if (sequenceNumRef.current === sequenceType.length - 1) {
       setSequenceName(nextSequenceName);
       setSequenceType(sequences[nextSequenceName]);
       setSequenceNum(0);
     } else {
-      setSequenceNum(sequenceNum + 1);
+      setSequenceNum(sequenceNumRef.current + 1);
     }
-    // console.log({ sequenceName, sequenceType, sequenceNum, nextSequenceName });
+
+    console.log({ sequenceName, sequenceType, nextSequenceName, sequenceNum });
+    console.log(sequenceNumRef.current);
+  };
+
+  const getContent = () => {
+    return sequenceType[sequenceNumRef.current];
   };
 
   return (
     <div>
-      <motion.button className={styles.button} onClick={handleClick}>
+      <motion.button
+        className={styles.button}
+        onClick={handleNextItemInSequence}
+      >
         {getContent()}
       </motion.button>
     </div>
